@@ -1,6 +1,6 @@
 {
   "name": "hello_world_testing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My first node Hello World",
   "main": "app.js",
   "scripts": {

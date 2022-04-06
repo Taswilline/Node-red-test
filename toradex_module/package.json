@@ -11,7 +11,8 @@
     "url": "git+https://github.com/Taswilline/Node-red-test.git"
   },
   "keywords": [
-    "hello-world"
+    "hello-world",
+    "node-red"
   ],
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
   "license": "MIT",

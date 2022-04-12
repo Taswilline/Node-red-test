@@ -1,4 +1,4 @@
-module.export = function(RED){
+module.exports = function(RED){
     function helloWorld(config){
         RED.nodes.createNode(this,config);
         var context = this.context();

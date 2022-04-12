@@ -1,8 +1,10 @@
 {
   "name": "hello_world_testing",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "My first node Hello World",
-  "main": "app.js",
+  "dependencies": {
+
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -14,6 +16,11 @@
     "hello-world",
     "node-red"
   ],
+  "node-red" :{
+    "nodes":{
+      "app" : "app/app.js"
+    }
+  },
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
   "license": "MIT",
   "bugs": {

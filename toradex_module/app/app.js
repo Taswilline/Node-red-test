@@ -1,10 +1,10 @@
 module.exports = function(RED){
+    "use strict"
     function helloWorld(config){
         RED.nodes.createNode(this,config);
-        var context = this.context();
         var node = this;
         this.on('input', function(msg){
-            var outMsg = {payload: "HelloWorld"};
+            msg.payload = "Hello World";
             node.send(outMsg);
         });
     }

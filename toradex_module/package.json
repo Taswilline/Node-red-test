@@ -1,28 +1,19 @@
 {
   "name": "hello_world_tdwillin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "My first node Hello World",
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Taswilline/Node-red-test/issues"
-  },
-  "homepage": "https://github.com/Taswilline/Node-red-test#readme",
+  "keywords": ["node-red"],
   
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Taswilline/Node-red-test.git"
   },
-  "keywords": [
-    "node-red"
-  ],
+
   "node-red": {
     "nodes": {
       "app": "app/app.js"
     }
   },
-  "main": "app/app.js",
-  "scripts": {
-    "test": "mocha"
-  }
+  "license": "MIT"
 }

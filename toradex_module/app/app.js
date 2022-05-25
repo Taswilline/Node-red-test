@@ -117,7 +117,7 @@ module.exports = function(RED){
     function gpioSet(config){
         RED.nodes.createNode(this,config);
         this.pinNumber = config.pinNumber;
-        this.numberOnOff = config.NumberOnOff
+        this.numberOnOff = config.numberOnOff
         var node = this;
         this.on('input', function(msg){
             msg.payload = "gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOff;

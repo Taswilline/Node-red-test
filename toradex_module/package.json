@@ -1,7 +1,7 @@
 {
-  "name": "hello_world_tdwillin",
-  "version": "1.0.15",
-  "description": "My first node Hello World",
+  "name": "toradex_colibri_imx7_asterv1.1b_tdwillin",
+  "version": "1.0.1",
+  "description": "GPIO Pin 40 header access for Carrierboard Aster V1.1b for Toradex",
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
   "keywords": ["node-red"],
   
@@ -12,7 +12,7 @@
 
   "node-red": {
     "nodes": {
-      "app": "app/app.js"
+      "app": "GPIO/GPIO.js"
     }
   },
   "license": "MIT"

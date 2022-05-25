@@ -2,11 +2,11 @@ module.exports = function(RED){
     "use strict"
     function helloWorld(config){
         RED.nodes.createNode(this,config);
-        var context = this.context();
+        this.prefix = config.prefix
         var node = this;
         this.on('input', function(msg){
-           var outMsg = {payload: "Hello World"};
-            node.send(outMsg);
+            msg.payload = "gpioset gpiochip4 " + "=1";
+            node.send(msg)
         });
     }
     RED.nodes.registerType("Hello World",helloWorld);

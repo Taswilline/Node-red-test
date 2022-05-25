@@ -1,6 +1,6 @@
 {
   "name": "hello_world_tdwillin",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "My first node Hello World",
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
   "keywords": ["node-red"],

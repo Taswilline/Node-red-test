@@ -54,6 +54,7 @@ module.exports = function(RED){
     RED.nodes.registerType("GPIO Set",gpioSet);
 
     function gpioGet(config){
+        RED.nodes.createNode(this,config);
         this.pinNumber = config.pinNumber;
         var node = this;
         this.on('input', function(msg){

@@ -5,7 +5,7 @@ module.exports = function(RED){
         this.prefix = config.prefix
         var node = this;
         this.on('input', function(msg){
-            msg.payload = "gpioset gpiochip4 " + "=1";
+            msg.payload = "gpioset gpiochip4 " + node.prefix + "=1";
             node.send(msg)
         });
     }

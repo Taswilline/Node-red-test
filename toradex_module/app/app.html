@@ -1,3 +1,4 @@
+<!--
 <script type="text/javascript">
     RED.nodes.registerType('Hello World',{
         category: 'Demo',
@@ -34,3 +35,115 @@
     <p> A node that increments every time a new message is received and sends Hello World in return. <br/>
     </p>
 </script>
+-->
+
+<script type="text/html" data-template-name="GPIO Set">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type = "text" id="node-input-name" placeholder="Name">
+    </div>
+  
+    <div class="form-row">
+        <label for="node-input-pinNumber"><i class="fa fa-tag"></i> Number</label>
+        <input type="text" id="node-input-pinNumber">
+    </div>
+  
+    <div class="form-row">
+        <label for="node-input-numberOnOff"><i class="fa fa-tag"></i> Number</label>
+        <input type="text" id="node-input-numberOnOff">
+    </div>
+  
+  </script>
+  
+  
+  <script type="text/html" data-help-name="GPIO Set">
+    <p> A node that increments every time a new message is received and sends Hello World in return. <br/>
+    </p>
+  </script>
+  
+  
+  <script type="text/javascript">
+      RED.nodes.registerType('GPIO Set',{
+          category: 'Demo',
+          color : '#89CFF0',
+          defaults :{
+              name: {value:""},
+              pinNumber: {value:0},
+              numberOnOff:{vlaue: 0}
+          },
+          inputs:1,
+          outputs:1,
+          icon: "face.png",
+          label: function(){
+              return this.name||"GPIO Set";
+          },
+          oneditprepare() {
+        const node = this
+        const {number} = node
+  
+        $('#node-input-pinNumber').typedInput({
+          type: 'number',
+          types: [
+            {
+              value: 'number',
+              // Should set the default value but only works if you
+              // are working with strings will not accept any type.
+              default: Number(number),
+              options: [
+                { value: 2,label: 'Pin 3'},
+                { value: 4,label: 'Pin 5'},
+                { value: 6,label: 'Pin 7'},
+                { value: 7,label: 'Pin 8'},
+                { value: 9,label: 'Pin 10'},
+                { value: 10,label: 'Pin 11'},
+                { value: 11,label: 'Pin 12'},
+                { value: 12,label: 'Pin 13'},
+                { value: 14,label: 'Pin 15'},
+                { value: 15,label: 'Pin 16'},
+                { value: 17,label: 'Pin 18'},
+                { value: 18,label: 'Pin 19'},
+                { value: 20,label: 'Pin 21'},
+                { value: 21,label: 'Pin 22'},
+                { value: 22,label: 'Pin 23'},
+                { value: 23,label: 'Pin 24'},
+                { value: 25,label: 'Pin 26'},
+                { value: 26,label: 'Pin 27'},
+                { value: 27,label: 'Pin 28'},
+                { value: 28,label: 'Pin 29'},
+                { value: 30,label: 'Pin 31'},
+                { value: 31,label: 'Pin 32'},
+                { value: 22,label: 'Pin 33'},
+                { value: 34,label: 'Pin 35'},
+                { value: 35,label: 'Pin 36'},
+                { value: 36,label: 'Pin 37'},
+                { value: 37,label: 'Pin 38'},
+                { value: 39,label: 'Pin 40'}
+              ]
+            }
+          ]
+           // Sets the current value will only work if same type
+        }).typedInput('value', Number(number))
+  
+  
+        $('#node-input-NumberOnOff').typedInput({
+          type: 'number',
+          types: [
+            {
+              value: 'number',
+              // Should set the default value but only works if you
+              // are working with strings will not accept any type.
+              default: Number(number),
+              options: [
+                {value: 0, label: 'off'},
+                {value: 1, label: 'on'}
+              ]
+            }
+          ]
+           // Sets the current value will only work if same type
+        }).typedInput('value', Number(number))
+      }
+      });
+  </script>
+  
+  
+  

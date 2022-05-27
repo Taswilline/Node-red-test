@@ -11,11 +11,13 @@ The best way to do this is like follow:
 		4. start node red inside the container with the command node-red
 		
 		GPIO Set
-		1. you can choose all the possible Pin from the 40 Pin header in a drop-down menu.
-		2. You can choose if you like to write a 1 => "on" in the list ore to write a 0 => "off" in the list
+		1. All possible Pin from the 40 Pin header in a drop-down menu.
+		2. If you like to write a 1 => chose "on" in the list
+		   ore choose "off" in the list to write a 0
 		
 		GPIO Get
-		1. You can choose all the possible Pins from the 40 Pin header in a drop-down menu to read as input.
+		1. All possible Pins from the 40 Pin header in a drop-down menu
+		   to read as input.
 		
 !!! For using GPIO you have to be make sure node-red have access to gpiochip and gpiod is installed. Otherwhise it wil run in to a error.!!!
 		
@@ -24,8 +26,8 @@ The CPU nodes give possability to read the CPU Temperature and CPU Usage.
 	CPU Temperate is given back a value which have to interpret like this. 
 		1. Value /1000 = Value in degree
 	
-	CPU Usage is given back the usage of the CPU ofe a meassured time which you can specify
-		1. You can choose how long the meassure have to be from 1 to 10 seconds in a drop down menu
+	CPU Usage is given back the usage of the CPU over meassured time.
+		1. How long the meassure have to be from 1 to 10 seconds in a drop down menu
 		2. The Value which came back is in "%"
 	
 	

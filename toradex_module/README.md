@@ -4,10 +4,11 @@ This nodes are for the toradex cloibri imx7 with carrier board aster v1.1b
 The GPIO nodes give possability to read and write to the 40Pin Header from the Aster V1.1b. 
 The dependecies to use this it to make sure gpiod is installed and the container have access to the memory. 
 The best way to do this is like follow:
-	1. donwload gpiod image from toradex
-	2. creat the gpiod container with the dev for gpiochip 0 to 6
-	3. install node red inside of the container
-	4. start node red inside the container with the command node-red
+
+		1. donwload gpiod image from toradex
+		2. creat the gpiod container with the dev for gpiochip 0 to 6
+		3. install node red inside of the container
+		4. start node red inside the container with the command node-red
 		
 		GPIO Set
 		1. you can choose all the possible Pin from the 40 Pin header in a drop-down menu.

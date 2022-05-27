@@ -10,7 +10,7 @@
 
 <script type="text/javascript">
     RED.nodes.registerType('CPU Temperature',{
-        category: 'Demo',
+        category: 'Toradex',
         color : '#98FF98',
         defaults :{
             name: {value:""}
@@ -40,8 +40,8 @@
 </script>
 
 <script type="text/javascript">
-  RED.nodes.registerType('CPU Temperature',{
-      category: 'Demo',
+  RED.nodes.registerType('CPU Usage',{
+      category: 'Toradex',
       color : '#98FF98',
       defaults :{
           name: {value:""},
@@ -51,7 +51,7 @@
       inputs:1,
       outputs:1,
       label: function(){
-          return this.name||"CPU Temperature";
+          return this.name||"CPU Usage";
       },
       oneditprepare() {
       const node = this

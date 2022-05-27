@@ -1,6 +1,6 @@
 {
   "name": "toradex_colibri_imx7_asterv1.1b_tdwillin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "GPIO Pin 40 header access for Carrierboard Aster V1.1b for Toradex",
   "author": "Sandro_Williner <sandro.williner@stud.hslu.ch>",
   "keywords": ["node-red"],
@@ -12,7 +12,9 @@
 
   "node-red": {
     "nodes": {
-      "app": "GPIO/GPIO.js"
+      "GPIO": "GPIO/GPIO.js",
+      "CPU": "CPU/CPU.js"
+      
     }
   },
   "license": "MIT"

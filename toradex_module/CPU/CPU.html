@@ -1,0 +1,86 @@
+<!-- CPU Temperature-->
+
+<script type="text/html" data-help-name="CPU Temperature">
+  <p> This node send the CPU Temperature back. 
+    The Value have to be divided by 1000 to take normale degree. <br/>
+    For work the Output of this node have to connect to the exec node. In the exec node check the box for append.
+  </p>
+</script>
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('CPU Temperature',{
+        category: 'Demo',
+        color : '#98FF98',
+        defaults :{
+            name: {value:""}
+        },
+        inputs:1,
+        outputs:1,
+        label: function(){
+            return this.name||"CPU Temperature";
+        }
+    });
+</script>
+
+<!-- CPU Usage-->
+
+<script type="text/html" data-template-name="CPU Temperature">
+  <div class="form-row">
+      <label for="node-input-timeMeassure"><i class="fa fa-tag"></i> Time to meassure</label>
+      <input type="text" id="node-input-timeMeassure">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="CPU Temperature">
+  <p> This node send the CPU Usage back measured over a specific time. 
+    The valueoutput is in % <br/>
+    For use node the outout have to connect to the exec node. In the exec node check the box append.
+  </p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('CPU Temperature',{
+      category: 'Demo',
+      color : '#98FF98',
+      defaults :{
+          name: {value:""},
+          timeMeassure: {value:0}
+
+      },
+      inputs:1,
+      outputs:1,
+      label: function(){
+          return this.name||"CPU Temperature";
+      },
+      oneditprepare() {
+      const node = this
+      const {number} = node
+
+      $('#node-input-timeMeassure').typedInput({
+        type: 'number',
+        types: [
+          {
+            value: 'number',
+            // Should set the default value but only works if you
+            // are working with strings will not accept any type.
+            default: Number(number),
+            options: [
+              { value: 2,label: '1 Second'},
+              { value: 3,label: '2 Second'},
+              { value: 4,label: '3 Second'},
+              { value: 5,label: '4 Second'},
+              { value: 6,label: '5 Second'},
+              { value: 7,label: '6 Second'},
+              { value: 8,label: '7 Second'},
+              { value: 9,label: '8 Second'},
+              { value: 10,label: '9 Second'},
+              { value: 11,label: '10 Second'}
+            ]
+          }
+        ]
+         // Sets the current value will only work if same type
+      }).typedInput('value', Number(number))
+    }
+  });
+</script>

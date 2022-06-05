@@ -1,6 +1,8 @@
 module.exports = function(RED){
+    
     function cpuTemp(config){
-        RED.nodes.createNode(this,config);
+        RED.nodes.createNode(this, config);
+        var node = this;
         this.on('input', function(msg){
             msg.payload = "cat /sys/devices/virtual/thermal/thermal_zone0/temp";
             node.send(msg)

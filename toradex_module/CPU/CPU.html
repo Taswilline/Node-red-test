@@ -1,5 +1,12 @@
 <!-- CPU Temperature-->
 
+<script type="text/html" data-template-name="CPU Temperature">
+  <div class="form-row">
+      <label for="node-input-unit"><i class="fa fa-tag"></i> Unit</label>
+      <input type="text" id="node-input-unit">
+  </div>
+</script>
+
 <script type="text/html" data-help-name="CPU Temperature">
   <p> This node send the CPU Temperature back. 
     The Value have to be divided by 1000 to take normale degree. <br/>
@@ -13,13 +20,35 @@
         category: 'Toradex',
         color : '#98FF98',
         defaults :{
-            name: {value:""}
+            name: {value:""},
+            unit:{value:0}
         },
         inputs:1,
         outputs:1,
         label: function(){
             return this.name||"CPU Temperature";
-        }
+        },
+        oneditprepare() {
+      const node = this
+      const {number} = node
+
+      $('#node-input-timeMeassure').typedInput({
+        type: 'number',
+        types: [
+          {
+            value: 'number',
+            // Should set the default value but only works if you
+            // are working with strings will not accept any type.
+            default: Number(number),
+            options: [
+              { value: 0,label: 'degree'},
+              { value: 273.15,label: 'kelvin'}
+            ]
+          }
+        ]
+         // Sets the current value will only work if same type
+      }).typedInput('value', Number(number))
+    }
     });
 </script>
 

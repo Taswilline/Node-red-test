@@ -1,3 +1,4 @@
+const {execSync} = require('child_process');
 module.exports = function(RED){
     var GPIO = [
         ['PWR', 'out'],
@@ -47,7 +48,15 @@ module.exports = function(RED){
         this.numberOnOff = config.numberOnOff
         var node = this;
         this.on('input', function(msg){
-            msg.payload = "gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOff;
+            execSync("gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOf);
+            //msg.payload = "gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOff;
+            var onOff
+            if(node.numberOnOff == 0){
+                onOff = "Off";
+            }else{
+                onOff ="On";
+            }
+            msg.payload = "Pin "+ node.pinNumber + onOff;
             node.send(msg)
         });
     }

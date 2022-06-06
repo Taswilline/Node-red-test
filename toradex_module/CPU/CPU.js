@@ -3,20 +3,13 @@ module.exports = function(RED){
     
     function cpuTemp(config){
         RED.nodes.createNode(this, config);
+        this.unit = config.unit;
         var node = this;
         this.on('input', function(msg){
-            //msg.payload = "cat /sys/devices/virtual/thermal/thermal_zone0/temp";
-            msg.payload = execSync('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"').toString();
-            /*exec('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"',(error, stdout, stderr) => {
-                if (error){
-                    msg.payload = "error:"+ error.message;
-                }
-                 else if(stderr){
-                    msg.payload = "stderr" + stderr;
-                }else {
-                    msg.payload = "stdout" +stdout;
-                }
-            });*/
+            var newMsg;
+            newMsg = execSync('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"').toString();
+            newMsg = (parseFloat(newMsg)/1000) +node.unit;
+            msg.payload = newMsg.toString();
             node.send(msg)
         });
     }

@@ -1,4 +1,4 @@
-const {exec} = require('child_process');
+const {execSync} = require('child_process');
 module.exports = function(RED){
     
     function cpuTemp(config){
@@ -6,7 +6,8 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             //msg.payload = "cat /sys/devices/virtual/thermal/thermal_zone0/temp";
-            exec('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"',(error, stdout, stderr) => {
+            msg.payload = execSync('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"').toString();
+            /*exec('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"',(error, stdout, stderr) => {
                 if (error){
                     msg.payload = "error:"+ error.message;
                 }
@@ -15,7 +16,7 @@ module.exports = function(RED){
                 }else {
                     msg.payload = "stdout" +stdout;
                 }
-            });
+            });*/
             node.send(msg)
         });
     }

@@ -6,7 +6,7 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             //msg.payload = "cat /sys/devices/virtual/thermal/thermal_zone0/temp";
-            exec('cat /sys/devices/virtual/thermal/thermal_zone0/temp',(error, stdout, stderr) => {
+            exec('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"',(error, stdout, stderr) => {
                 if (error){
                     msg.payload = "error:"+ error.message;
                 }

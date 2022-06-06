@@ -13,7 +13,7 @@ module.exports = function(RED){
                  else if(stderr){
                     msg.payload = "stderr" + stderr;
                 }else {
-                    msg.payload = stdout;
+                    msg.payload = "stdout" +stdout;
                 }
             });
             node.send(msg)

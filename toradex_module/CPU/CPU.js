@@ -8,7 +8,7 @@ module.exports = function(RED){
         this.on('input', function(msg){
             var newMsg;
             newMsg = execSync('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"').toString();
-            newMsg = (parseFloat(newMsg)/1000) +parseFLoat(node.unit);
+            newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
             msg.payload = newMsg.toString();
             node.send(msg)
         });
@@ -21,7 +21,7 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var command = `echo $[100-$(vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}')]`;
-            msg.payload = execSync(command);
+            msg.payload = execSync(command).toString();
             node.send(msg)
         });
     }

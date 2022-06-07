@@ -2,15 +2,21 @@
 
 <script type="text/html" data-template-name="CPU Temperature">
   <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Unit</label>
+      <input type="text" id="node-input-name" placeholder="Degree / Kelvin">
+  </div>
+</script>
+
+<script type="text/html" data-template-name="CPU Temperature">
+  <div class="form-row">
       <label for="node-input-unit"><i class="fa fa-tag"></i> Unit</label>
       <input type="text" id="node-input-unit">
   </div>
 </script>
 
 <script type="text/html" data-help-name="CPU Temperature">
-  <p> This node send the CPU Temperature back. 
-    The Value have to be divided by 1000 to take normale degree. <br/>
-    For work the Output of this node have to connect to the exec node. In the exec node check the box for append.
+  <p> This node send the CPU Temperature in degree or kelvin back, which do you more prefer.<br/>
+      It is just a Number, the reason for that is to proof with a switch Statement a Number and do something.<br/>
   </p>
 </script>
 
@@ -25,6 +31,7 @@
         },
         inputs:1,
         outputs:1,
+        icon: "thermometer.png",
         label: function(){
             return this.name||"CPU Temperature";
         },
@@ -56,15 +63,21 @@
 
 <script type="text/html" data-template-name="CPU Usage">
   <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Meassured time</label>
+      <input type="text" id="node-input-name" placeholder="2 Seconds">
+  </div>
+</script>
+
+<script type="text/html" data-template-name="CPU Usage">
+  <div class="form-row">
       <label for="node-input-timeMeassure"><i class="fa fa-tag"></i> Time to meassure</label>
       <input type="text" id="node-input-timeMeassure">
   </div>
 </script>
 
 <script type="text/html" data-help-name="CPU Usage">
-  <p> This node send the CPU Usage back measured over a specific time. 
+  <p> This node send the CPU usage back in %, measured over a specific time. 
     The valueoutput is in % <br/>
-    For use node the outout have to connect to the exec node. In the exec node check the box append.
   </p>
 </script>
 
@@ -79,6 +92,7 @@
       },
       inputs:1,
       outputs:1,
+      icon: "cpu_usage.png",
       label: function(){
           return this.name||"CPU Usage";
       },

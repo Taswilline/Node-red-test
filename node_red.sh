@@ -156,8 +156,8 @@ if [ "$EUID" == "0" ]; then
   echo -en "If you know what you are doing as root, please continue.\r\n\r\n"
 
   yn="${CONFIRM_ROOT}"
-  #[ ! "${yn}" ] && read -t 10 -p "Are you really sure you want to install as root ? (y/N) ? " yn
-  yn=y
+  [ ! "${yn}" ] && read -t 10 -p "Are you really sure you want to install as root ? (y/N) ? " yn
+  #yn=y
   case $yn in
     [Yy]* )
     ;;

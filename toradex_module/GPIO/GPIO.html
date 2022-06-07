@@ -20,7 +20,9 @@
 
 
 <script type="text/html" data-help-name="GPIO Set">
-  <p> A node that increments every time a new message is received and sends Hello World in return. <br/>
+  <p> You can chose all possible pins from 40 pin header. It send after setting the GPIO pin what was done. <br/>
+        Example: you choose to turn pin 40 on <br/>
+        Message: Pin 40 on
   </p>
 </script>
 
@@ -36,6 +38,8 @@
         },
         inputs:1,
         outputs:1,
+        icon: "output.png",
+        align: 'right',
         label: function(){
             return this.name||"GPIO Set";
         },
@@ -124,7 +128,9 @@
 
 
 <script type="text/html" data-help-name="GPIO Get">
-  <p> A node that increments every time a new message is received and sends Hello World in return. <br/>
+  <p> Get the GPIO value from a pin from the 40 pin header <br/>
+      Return: 1 when it's high <br/>
+      Return: 0 when it's low
   </p>
 </script>
 
@@ -139,6 +145,7 @@
         },
         inputs:1,
         outputs:1,
+        icon: "input.png",
         label: function(){
             return this.name||"GPIO Get";
         },

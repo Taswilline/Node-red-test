@@ -20,8 +20,10 @@ module.exports = function(RED){
         this.timeMeassure = config.timeMeassure;
         var node = this;
         this.on('input', function(msg){
-            var command = `echo $[100-$(vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}')]`;
-            msg.payload = execSync(command).toString();
+            var command = `vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}'`;
+            var msg = execSync(command).toString();
+            msg = 100 - (parseInt(msg));
+            msg.payload = msg;
             node.send(msg)
         });
     }

@@ -48,17 +48,15 @@ module.exports = function(RED){
         this.numberOnOff = config.numberOnOff
         var node = this;
         this.on('input', function(msg){
-            //var command1 = "gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOf;
             var command = `gpioset gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}=${node.numberOnOff}`;
             execSync(`${command}`);
-            //msg.payload = "gpioset gpiochip" + GPIO[node.pinNumber][0] +" " + GPIO[node.pinNumber][1] +"=" + node.numberOnOff;
             var onOff
             if(node.numberOnOff == 0){
                 onOff = "Off";
             }else{
                 onOff ="On";
             }
-            msg.payload = "Pin "+ node.pinNumber + onOff;
+            msg.payload = `Pin ${node.pinNumber +1} ${onOff}`;
             node.send(msg)
         });
     }
@@ -69,7 +67,8 @@ module.exports = function(RED){
         this.pinNumber = config.pinNumber;
         var node = this;
         this.on('input', function(msg){
-            msg.payload = "gpioget gpiochip" + GPIO[node.pinNumber][0] +" " +GPIO[node.pinNumber][1];
+            var command = `gpioget gpiochip ${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber[1]]}`;
+            msg.payload = execSync(command).toString();
             node.send(msg);
         });
     }

@@ -56,7 +56,8 @@ module.exports = function(RED){
             }else{
                 onOff ="On";
             }
-            msg.payload = `Pin ${node.pinNumber +1} ${onOff}`;
+            var pin = 1 + parseInt(node.pinNumber);
+            msg.payload = `Pin ${pin} ${onOff}`;
             node.send(msg)
         });
     }

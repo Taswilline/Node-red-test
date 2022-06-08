@@ -23,7 +23,7 @@ module.exports = function(RED){
             var command = `vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}'`;
             var msg = execSync(command).toString();
             msg = 100 - (parseInt(msg));
-            msg.payload = msg;
+            msg.payload = msg.toString();
             node.send(msg)
         });
     }

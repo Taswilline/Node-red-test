@@ -18,9 +18,11 @@ module.exports = function(RED){
     function cpuUsage(config){
         RED.nodes.createNode(this,config);
         this.timeMeassure = config.timeMeassure;
+        this.meassureUnit = config.meassureUnit;
         var node = this;
         this.on('input', function(msg){
-            var command = `vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}'`;
+            var command = parseInt(node.timeMeassure) * parseInt(node.meassureUnit);
+            command =  `vmstat 1 ${command}|tail -1|awk '{print $15}'`;
             var newmsg = execSync(command).toString();
             newmsg = 100 - (parseInt(newmsg));
             msg.payload = newmsg.toString();

@@ -25,7 +25,7 @@
         color : '#98FF98',
         defaults :{
             name: {value:""},
-            unit:{value:0}
+            unit:{value:2}
         },
         inputs:1,
         outputs:1,
@@ -69,6 +69,11 @@
       <label for="node-input-timeMeassure"><i class="fa fa-tag"></i> Time to meassure</label>
       <input type="text" id="node-input-timeMeassure">
   </div>
+
+  <div class="form-row">
+    <label for="node-input-meassureUnit"><i class="fa fa-tag"></i> Meassure unit</label>
+    <input type="text" id="MeassureUnit">
+</div>
 </script>
 
 <script type="text/html" data-help-name="CPU Usage">
@@ -82,8 +87,8 @@
       color : '#98FF98',
       defaults :{
           name: {value:""},
-          timeMeassure: {value:0}
-
+          timeMeassure: {value:0},
+          meassureUnit: {value:1}
       },
       inputs:1,
       outputs:1,
@@ -114,6 +119,24 @@
               { value: 9,label: '8 Second'},
               { value: 10,label: '9 Second'},
               { value: 11,label: '10 Second'}
+            ]
+          }
+        ]
+         // Sets the current value will only work if same type
+      }).typedInput('value', Number(number))
+
+      $('#node-input-meassureUnit').typedInput({
+        type: 'number',
+        types: [
+          {
+            value: 'number',
+            // Should set the default value but only works if you
+            // are working with strings will not accept any type.
+            default: Number(number),
+            options: [
+              { value: 1,label: 'second'},
+              { value: 60,label: 'minute'},
+              { value: 3600,label: 'hour'}
             ]
           }
         ]

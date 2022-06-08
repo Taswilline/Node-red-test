@@ -34,18 +34,18 @@
             return this.name||"CPU Temperature";
         },
         oneditprepare() {
-      const node = this
-      const {number} = node
+        const node = this
+        const {number} = node
 
-      $('#node-input-unit').typedInput({
-        type: 'number',
-        types: [
-          {
-            value: 'number',
-            // Should set the default value but only works if you
-            // are working with strings will not accept any type.
-            default: Number(number),
-            options: [
+        $('#node-input-unit').typedInput({
+          type: 'number',
+          types: [
+           {
+             value: 'number',
+             // Should set the default value but only works if you
+             // are working with strings will not accept any type.
+              default: Number(number),
+              options: [
               { value:      0,label: 'degree'},
               { value: 273.15,label: 'kelvin'}
             ]

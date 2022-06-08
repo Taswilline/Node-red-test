@@ -21,8 +21,8 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var command = `vmstat 1 ${node.timeMeassure}|tail -1|awk '{print $15}'`;
-            var msg = execSync(command).toString();
-            msg = 100 - (parseInt(msg));
+            var newmsg = execSync(command).toString();
+            newmsg = 100 - (parseInt(newmsg));
             msg.payload = msg.toString();
             node.send(msg)
         });

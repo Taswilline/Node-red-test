@@ -67,7 +67,7 @@ module.exports = function(RED){
         this.pinNumber = config.pinNumber;
         var node = this;
         this.on('input', function(msg){
-            var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber[1]]}`;
+            var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}`;
             msg.payload = execSync(command).toString();
             node.send(msg)
         });

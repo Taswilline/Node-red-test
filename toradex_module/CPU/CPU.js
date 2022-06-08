@@ -21,7 +21,7 @@ module.exports = function(RED){
         this.meassureUnit = config.meassureUnit;
         var node = this;
         this.on('input', function(msg){
-            var command = parseInt(node.timeMeassure) * parseInt(node.meassureUnit);
+            var command = parseInt(node.timeMeassure) * parseInt(node.meassureUnit) +1;
             command =  `vmstat 1 ${command}|tail -1|awk '{print $15}'`;
             var newmsg = execSync(command).toString();
             newmsg = 100 - (parseInt(newmsg));

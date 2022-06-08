@@ -72,7 +72,7 @@
 
   <div class="form-row">
     <label for="node-input-meassureUnit"><i class="fa fa-tag"></i> Meassure unit</label>
-    <input type="text" id="MeassureUnit">
+    <input type="text" id="node-input-meassureUnit">
 </div>
 </script>
 
@@ -95,6 +95,7 @@
       icon: "cpu_usage.png",
       label: function(){
           return this.name||"CPU Usage";
+
       },
       oneditprepare() {
       const node = this
@@ -109,16 +110,16 @@
             // are working with strings will not accept any type.
             default: Number(number),
             options: [
-              { value: 2,label: '1 Second'},
-              { value: 3,label: '2 Second'},
-              { value: 4,label: '3 Second'},
-              { value: 5,label: '4 Second'},
-              { value: 6,label: '5 Second'},
-              { value: 7,label: '6 Second'},
-              { value: 8,label: '7 Second'},
-              { value: 9,label: '8 Second'},
-              { value: 10,label: '9 Second'},
-              { value: 11,label: '10 Second'}
+              { value: 1,label: '1 '},
+              { value: 2,label: '2 '},
+              { value: 3,label: '3 '},
+              { value: 4,label: '4 '},
+              { value: 5,label: '5 '},
+              { value: 6,label: '6 '},
+              { value: 7,label: '7 '},
+              { value: 8,label: '8 '},
+              { value: 9,label: '9 '},
+              { value: 10,label: '10 Second'}
             ]
           }
         ]
@@ -145,3 +146,8 @@
     }
   });
 </script>
+
+
+
+
+

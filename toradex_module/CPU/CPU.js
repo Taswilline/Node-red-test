@@ -1,4 +1,5 @@
 const {exec} = require('child_process');
+const { stdout } = require('process');
 module.exports = function(RED){
     
     function cpuTemp(config){
@@ -7,11 +8,14 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var newMsg;
-            var error;
-            var stderr;
-            var stdout;
-            exec('cat "/sys/devices/virtual/thermal/thermal_zone0/temp"', error, stdout, stderr);
-            setTimeout(() => {newMsg = stdout;} ,5);
+            exec(`cat /sys/devices/virtual/thermal/thermal_zone0/temp`, (error, stdout, stderr) => {
+                if(error){
+                    node.error = error.toString();
+                    return
+                }
+                newMsg =stdout;
+            });
+            setTimeout(() => {newMsg = stdout;}, 30);
             newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
             msg.payload = newMsg.toString();
             node.send(msg)
@@ -25,16 +29,19 @@ module.exports = function(RED){
         this.meassureUnit = config.meassureUnit;
         var node = this;
         this.on('input', function(msg){
-            var error;
-            var stderr;
-            var stdout;
+            var newMsg;
             var command = parseInt(node.timeMeassure) * parseInt(node.meassureUnit) +1;
             command =  `vmstat 1 ${command}|tail -1|awk '{print $15}'`;
-            exec(`${command}`,error, stdout, stderr);
-            var newmsg;
-            setTimeout(() => {newmsg = stdout},parseInt(command) + 1);
-            newmsg = 100 - (parseInt(newmsg));
-            msg.payload = newmsg.toString();
+            exec(`${command}`, (error, stdout, stderr) => {
+                if(error){
+                    node.error = error.toString();
+                    return
+                }
+                newMsg = stdout;
+            });
+            setTimeout(() => {newMsg = stdout;}, (parseFloat(command))*1000);
+            newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
+            msg.payload = newMsg.toString();
             node.send(msg)
         });
     }

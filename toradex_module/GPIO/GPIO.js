@@ -49,12 +49,15 @@ module.exports = function(RED){
         this.numberOnOff = config.numberOnOff
         var node = this;
         this.on('input', function(msg){
-            var error;
-            var stderr;
-            var stdout;
+            var newMsg;
             var command = `gpioset gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}=${node.numberOnOff}`;
-            exec(`${command}`,error,stdout,stderr);
-            var onOff
+            exec(`${command}`, (error, stdout, stderr) => {
+                   if(error){
+                       node.error = error.toString();
+                       return
+                   }
+                   newMsg = stdout;
+               });
             if(node.numberOnOff == 0){
                 onOff = "Off";
             }else{
@@ -72,12 +75,15 @@ module.exports = function(RED){
         this.pinNumber = config.pinNumber;
         var node = this;
         this.on('input', function(msg){
-            var error;
-            var stderr;
-            var stdout;
             var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}`;
-            exec(`${command}`,error, stdout, stderr);
-            setTimeout(() => {msg.payload = stdout;} ,30);
+            exec(`${command}`, (error, stdout, stderr) => {
+                if(error){
+                    node.error = error.toString();
+                    return
+                }
+                newMsg = stdout;
+            });
+            setTimeout(() => {msg.payload= stdout;}, 20);
             node.send(msg)
         });
     }

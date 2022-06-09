@@ -1,4 +1,5 @@
-const {execSync} = require('child_process');
+const {exec} = require('child_process');
+const { stdout } = require('process');
 module.exports = function(RED){
     var GPIO = [
         ['PWR', 'out'],
@@ -49,7 +50,7 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var command = `gpioset gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}=${node.numberOnOff}`;
-            execSync(`${command}`);
+            exec(`${command}`,error,stdout,stderr);
             var onOff
             if(node.numberOnOff == 0){
                 onOff = "Off";
@@ -69,7 +70,8 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}`;
-            msg.payload = execSync(command).toString();
+            exec(`${command}`,error, stdout, sterr);
+            setTimeout(() => {msg.payload = stdout;} ,30);
             node.send(msg)
         });
     }

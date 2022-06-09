@@ -49,6 +49,9 @@ module.exports = function(RED){
         this.numberOnOff = config.numberOnOff
         var node = this;
         this.on('input', function(msg){
+            var error;
+            var stderr;
+            var stdout;
             var command = `gpioset gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}=${node.numberOnOff}`;
             exec(`${command}`,error,stdout,stderr);
             var onOff
@@ -69,8 +72,11 @@ module.exports = function(RED){
         this.pinNumber = config.pinNumber;
         var node = this;
         this.on('input', function(msg){
+            var error;
+            var stderr;
+            var stdout;
             var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}`;
-            exec(`${command}`,error, stdout, sterr);
+            exec(`${command}`,error, stdout, stderr);
             setTimeout(() => {msg.payload = stdout;} ,30);
             node.send(msg)
         });

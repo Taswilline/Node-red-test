@@ -1,5 +1,9 @@
 const {exec} = require('child_process');
 const { stdout } = require('process');
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 module.exports = function(RED){
     
     function cpuTemp(config){
@@ -15,10 +19,11 @@ module.exports = function(RED){
                 }
                 newMsg =stdout;
             });
-            setTimeout(() => {newMsg = stdout;}, 30);
-            newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
-            msg.payload = newMsg.toString();
-            node.send(msg)
+            sleep(20)
+                .then(() => { newMsg = stdout})
+                .then(() => { newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit)})
+                .then(() => { msg.payload = newMsg.toString();})
+                .then(() => { node.send(msg)})
         });
     }
     RED.nodes.registerType("CPU Temperature",cpuTemp);
@@ -39,7 +44,12 @@ module.exports = function(RED){
                 }
                 newMsg = stdout;
             });
-            setTimeout(() => {newMsg = stdout;}, (parseFloat(command))*1000);
+            sleep((command * 1000)+1000 )
+            .then(() => { newMsg = stdout})
+            .then(() => { 100 - parseInt(newMsg)})
+            .then(() => { msg.payload = newMsg.toString();})
+            .then(() => { node.send(msg)})
+            
             newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
             msg.payload = newMsg.toString();
             node.send(msg)

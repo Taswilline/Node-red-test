@@ -1,5 +1,4 @@
 const {exec} = require('child_process');
-const { stdout } = require('process');
 module.exports = function(RED){
     var GPIO = [
         ['PWR', 'out'],
@@ -43,6 +42,9 @@ module.exports = function(RED){
         ['GND', 'GND'],
         [4, 0]
     ];
+
+ 
+
     function gpioSet(config){
         RED.nodes.createNode(this,config);
         this.pinNumber = config.pinNumber;
@@ -50,6 +52,7 @@ module.exports = function(RED){
         var node = this;
         this.on('input', function(msg){
             var newMsg;
+            var onOff;
             var command = `gpioset gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}=${node.numberOnOff}`;
             exec(`${command}`, (error, stdout, stderr) => {
                    if(error){
@@ -74,6 +77,7 @@ module.exports = function(RED){
         RED.nodes.createNode(this,config);
         this.pinNumber = config.pinNumber;
         var node = this;
+        var newMsg;
         this.on('input', function(msg){
             var command = `gpioget gpiochip${GPIO[node.pinNumber][0]} ${GPIO[node.pinNumber][1]}`;
             exec(`${command}`, (error, stdout, stderr) => {
@@ -83,8 +87,7 @@ module.exports = function(RED){
                 }
                 newMsg = stdout;
             });
-            setTimeout(() => {msg.payload= stdout;}, 20);
-            node.send(msg)
+            setTimeout(() => {msg.payload= stdout; node.send(msg)}, 20);
         });
     }
     RED.nodes.registerType("GPIO Get", gpioGet);

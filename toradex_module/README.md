@@ -3,7 +3,7 @@ These nodes are for the toradexColibrii imx7 with carrier board aster v1.1b
 
 The GPIO nodes give the possibility to read and write to the 40Pin Header from the Aster V1.1b. 
 The dependencies to use this it to make sure gpiod is installed and the container has access to the memory. You can set up a container with a given Image.
-This Image is on Dockerhub. You can find it under the name
+This Image is on Dockerhub. You can find it under the name bat_toradex_node_red
 The best way to do this is as follow:
 
         1. Download the image

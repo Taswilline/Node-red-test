@@ -43,8 +43,6 @@ module.exports = function(RED){
         [4, 0]
     ];
 
- 
-
     function gpioSet(config){
         RED.nodes.createNode(this,config);
         this.pinNumber = config.pinNumber;

@@ -20,7 +20,6 @@ module.exports = function(RED){
                 newMsg =stdout;
             });
             sleep(1000)
-                .then(() => { newMsg = stdout})
                 .then(() => { newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit)})
                 .then(() => { msg.payload = newMsg.toString();})
                 .then(() => { node.send(msg)})
@@ -45,7 +44,6 @@ module.exports = function(RED){
                 newMsg = stdout;
             });
             sleep((command * 1000)+1000 )
-            .then(() => { newMsg = stdout})
             .then(() => { 100 - parseInt(newMsg)})
             .then(() => { msg.payload = newMsg.toString();})
             .then(() => { node.send(msg)})

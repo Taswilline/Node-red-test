@@ -85,7 +85,7 @@ module.exports = function(RED){
                 }
                 newMsg = stdout;
             });
-            setTimeout(() => {msg.payload= stdout; node.send(msg)}, 20);
+            setTimeout(() => {msg.payload= newMsg; node.send(msg)}, 50);
         });
     }
     RED.nodes.registerType("GPIO Get", gpioGet);

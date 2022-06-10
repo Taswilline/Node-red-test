@@ -19,7 +19,7 @@ module.exports = function(RED){
                 }
                 newMsg =stdout;
             });
-            sleep(20)
+            sleep(1000)
                 .then(() => { newMsg = stdout})
                 .then(() => { newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit)})
                 .then(() => { msg.payload = newMsg.toString();})
@@ -50,9 +50,6 @@ module.exports = function(RED){
             .then(() => { msg.payload = newMsg.toString();})
             .then(() => { node.send(msg)})
             
-            newMsg = (parseFloat(newMsg)/1000) + parseFloat(node.unit);
-            msg.payload = newMsg.toString();
-            node.send(msg)
         });
     }
     RED.nodes.registerType("CPU Usage",cpuUsage);

@@ -35,11 +35,10 @@ module.exports = function(RED){
         this.on('input', function(msg){
             var newMsg;
             var command = parseInt(node.timeMeassure) * parseInt(node.meassureUnit) +1;
-            command =  `vmstat 1 ${command}|tail -1|awk '{print $15}'`;
-            exec(`${command}`, (error, stdout, stderr) => {
+            exec(`vmstat 1 ${command}|tail -1|awk '{print $15}'`, (error, stdout, stderr) => {
                 if(error){
-                    node.error = error.toString();
-                    return
+                    node.error = (`exec error: ${error}`);
+                    return;
                 }
                 newMsg = stdout;
             });

@@ -43,7 +43,7 @@ module.exports = function(RED){
                 newMsg = stdout;
             });
             sleep((parseInt(command) * 1000)+1000 )
-            .then(() => { 100 - parseInt(newMsg)})
+            .then(() => { newMws = 100 - parseInt(newMsg)})
             .then(() => { msg.payload = newMsg.toString();})
             .then(() => { node.send(msg)})
             
